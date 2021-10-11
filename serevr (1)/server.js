@@ -19,7 +19,7 @@ const clientrouter =  require('./routes/ClientRouter')
 const productrouter =  require('./routes/ProductRouter')
 const categoryrouter =  require('./routes/CategoryRouter')
 const orderrouter =  require('./routes/OrderRouter')
-const contactrouter =  require('./routes/ContactRouter')
+//const contactrouter =  require('./routes/ContactRouter')
 
 //parent routes
 app.use("/users",userrouter);
@@ -28,7 +28,7 @@ app.use("/clients", clientrouter);
 app.use("/products", productrouter);
 app.use("/categories", categoryrouter);
 app.use("/orders", orderrouter);
-app.use("/contacts", contactrouter);
+//app.use("/contacts", contactrouter);
 
 app.get("/", (req, res) => {
   res.send("hello");

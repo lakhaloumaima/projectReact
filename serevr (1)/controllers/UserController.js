@@ -61,21 +61,19 @@ module.exports = {
 
 
 
-  updateuser: (req, res) => {
-    User.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, user) => {
-      if (!user) {
-        res.status(500).json({
-          message: "user not updated ",
-          data: null,
-        });
-      } else {
-        res.status(200).json({
-          message: "user updated successfuly ",
-          data: user,
-        });
-      }
-    });
-  },
+    updateUser: (req, res) => {
+     User.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, user) => {
+         if (err) {
+           res.status(500).json({
+             message: "error updating user",
+           });
+         } else {
+           res.status(200).json({
+             message: "succesfuly updating user",
+           });
+         }
+       });
+    },
 
   deleteuser: (req, res) => {
     User.findByIdAndDelete({ _id: req.params.id }, (err, user) => {

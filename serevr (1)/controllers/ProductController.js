@@ -105,10 +105,12 @@ module.exports = {
       if (err) {
         res.status(500).json({
           message: "error updating product",
+          data : null
         });
       } else {
         res.status(200).json({
           message: "succesfuly updating product",
+          data : req.body
         });
       }
     });

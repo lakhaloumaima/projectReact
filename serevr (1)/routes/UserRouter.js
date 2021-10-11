@@ -10,31 +10,32 @@ const express = require("express");
 
 const route = express.Router();
 
-const UserController = require("../controllers/UserConroller");
+const UserController = require("../controllers/UserController");
 
 const upload = require('../middlewares/upload')
 
-const isauth = require("../middlewares/isauth");
+const isAuth = require("../middlewares/isauth");
 
-const isadmin = require("../middlewares/isAdmin");
+const isAdmin = require("../middlewares/isAdmin");
 
 //create user public route
 route.post("/", UserController.createuser);
 //get user by id private route
-route.get("/me", isauth, UserController.getuserbyid);
+route.get("/me", isAuth, UserController.getuserbyid);
 // upadte user by id
-route.put("/update", isauth, UserController.updateuser);
+route.put("/:id", isAuth, UserController.updateUser);
+
 //delete user
-route.delete("/:id", isauth, isadmin, UserController.deleteuser);
+route.delete("/:id", isAuth, isAdmin, UserController.deleteuser);
 //get all users
-route.get("/", isauth, isadmin, UserController.getallusers);
+route.get("/", isAuth, isAdmin, UserController.getallusers);
 //authenticate user public route
 route.post("/login", UserController.authenticate);
 //upload avatar
-route.put("/uploadavatar", isauth, upload.single('avatar'),  UserController.uploadavatar);
+route.put("/uploadavatar", isAuth, upload.single('avatar'),  UserController.uploadavatar);
 
 module.exports = route;
 
-// create admin et client => amin etcleint avec password crypted
+// create admin et client => admin etclient avec password crypted
 // authenticate api users/login (admin,client)
-//consomer delete user api
+//consommer delete user api

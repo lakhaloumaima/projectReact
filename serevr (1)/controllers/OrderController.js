@@ -75,13 +75,14 @@ module.exports = {
       })
       .catch((err) => {
         res.status(500).json({
-          message: "no orders from systemm ",
+          message: "no orders from system",
           data: null,
         });
       });
   },
 
-  update: (req, res) => {
+
+ update: (req, res) => {
     Order.findByIdAndUpdate(
       { _id: req.params.id },
       { livred: req.body.livred },
@@ -109,7 +110,7 @@ module.exports = {
             })
             .catch((err) => {
               res.status(500).json({
-                message: "error updateing",
+                message: "error updating",
                 data: null,
               });
             });
@@ -118,22 +119,21 @@ module.exports = {
     );
   },
 
-  dateleorder: (req, res) => {
-    Order.findByIdAndDelete({ _id: req.params.id }, (err, order) => {
-      if (err) {
-        res.status(500).json({
-          message: "error deleting order",
-          data: null,
-        });
-      } else {
-        res.status(200).json({
-          message: "success deleting order",
-          data: order,
-        });
-      }
-    });
-  },
-
+dateleorder: (req, res) => {
+  Order.findByIdAndDelete({ _id: req.params.id }, (err, order) => {
+    if (err) {
+      res.status(500).json({
+        message: "error deleting order",
+        data: null,
+      });
+    } else {
+      res.status(200).json({
+        message: "success deleting order",
+        data: order,
+      });
+    }
+  });
+},
   getordersbyclientid: (req, res) => {
 
     console.log('dfxgsg');

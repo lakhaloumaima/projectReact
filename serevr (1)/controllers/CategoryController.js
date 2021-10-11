@@ -36,31 +36,40 @@ module.exports = {
       }
     });
   },
-
-
-  upadatecategory: (req, res) => {
-    let data = {
-      name: req.body.name,
+  updateimagee: (req, res) => {
+    const data = {
       icon: req.file.filename,
     };
-    Category.findByIdAndUpdate(
-      { _id: req.paramms.id },
-      data,
-      (err, category) => {
+
+    Category.findByIdAndUpdate({ _id: req.params.id }, data, (err, category) => {
+      if (err) {
+        res.status(500).json({
+          message: "error updating category",
+        });
+      } else {
+        res.status(200).json({
+          message: "succesfuly updating category",
+        });
+      }
+    });
+  },
+
+ 
+  updatecategoryinfo: (req, res) => {
+    Category.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, category) => {
         if (err) {
           res.status(500).json({
-            message: " catgory not updated " + err,
-            data: null,
+            message: "error updating category",
+            data :null ,
           });
         } else {
           res.status(200).json({
-            message: "category updated successfuly",
-            data: category,
+            message: "succesfuly updating category",
+            data : req.body ,
           });
         }
-      }
-    );
-  },
+      });
+   },
 
   deletecategory: (req, res) => {
     Category.findByIdAndDelete({ _id: req.params.id }, (err, category) => {
